@@ -1,102 +1,206 @@
-import Image from "next/image";
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      {/* Header */}
+      <header className="container mx-auto px-4 py-6">
+        <nav className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-lg">Q</span>
+            </div>
+            <h1 className="text-2xl font-bold text-gray-900">QuickCoach</h1>
+          </div>
+          <div className="flex items-center space-x-4">
+            <Button variant="ghost">Login</Button>
+            <Button>Sign Up</Button>
+          </div>
+        </nav>
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Hero Section */}
+      <main className="container mx-auto px-4 py-16">
+        <div className="text-center max-w-4xl mx-auto">
+          <Badge className="mb-4" variant="secondary">
+            🔥 AI-Powered Personal Mentor
+          </Badge>
+          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+            Instant AI
+            <span className="text-blue-600"> Coaching </span>
+            for Any Problem
+          </h2>
+          <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+            Paste your technical or career problem and get step-by-step guidance, 
+            personalized recommendations, and actionable solutions from your AI coach powered by DeepSeek.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <Button size="lg" className="text-lg px-8 py-6">
+              Get Instant Coaching
+            </Button>
+            <Button size="lg" variant="outline" className="text-lg px-8 py-6">
+              Try Demo Problem
+            </Button>
+          </div>
+        </div>
+
+        {/* How It Works Section */}
+        <div className="mb-20">
+          <h3 className="text-3xl font-bold text-center text-gray-900 mb-12">How QuickCoach Works</h3>
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <Card className="text-center hover:shadow-lg transition-shadow border-2">
+              <CardHeader>
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">📝</span>
+                </div>
+                <CardTitle>1. Paste Your Problem</CardTitle>
+                <CardDescription>
+                  Share any technical challenge, career question, or learning goal. Be as detailed as you want.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="text-center hover:shadow-lg transition-shadow border-2">
+              <CardHeader>
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">🤖</span>
+                </div>
+                <CardTitle>2. AI Analysis</CardTitle>
+                <CardDescription>
+                  Our DeepSeek-powered AI coach analyzes your problem and creates a personalized action plan.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="text-center hover:shadow-lg transition-shadow border-2">
+              <CardHeader>
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">🎯</span>
+                </div>
+                <CardTitle>3. Get Step-by-Step Guide</CardTitle>
+                <CardDescription>
+                  Receive actionable steps, resources, and recommendations. Track progress and rate usefulness.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </div>
+        </div>
+
+        {/* Features Section */}
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
+          <Card className="text-center hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">📚</span>
+              </div>
+              <CardTitle>Session History</CardTitle>
+              <CardDescription>
+                View all your past coaching sessions, organized by date and topic for easy reference.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          <Card className="text-center hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">🏷️</span>
+              </div>
+              <CardTitle>Smart Tagging</CardTitle>
+              <CardDescription>
+                Automatically tag topics like "Python", "Career", "Leadership" to find relevant sessions quickly.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          <Card className="text-center hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">⭐</span>
+              </div>
+              <CardTitle>Rate & Improve</CardTitle>
+              <CardDescription>
+                Rate the usefulness of each coaching session to help improve future recommendations.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </div>
+
+        {/* Stats Section */}
+        <div className="mt-20 bg-white rounded-2xl shadow-xl p-8">
+          <div className="grid md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-4xl font-bold text-blue-600 mb-2">5K+</div>
+              <div className="text-gray-600">Problems Solved</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-green-600 mb-2">25K+</div>
+              <div className="text-gray-600">Coaching Sessions</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-purple-600 mb-2">98%</div>
+              <div className="text-gray-600">User Satisfaction</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-orange-600 mb-2">50+</div>
+              <div className="text-gray-600">Topic Categories</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Demo Section */}
+        <div className="mb-20 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-3xl font-bold text-center text-gray-900 mb-8">See It In Action</h3>
+            <div className="bg-white rounded-xl shadow-lg p-6">
+              <div className="mb-4">
+                <span className="text-sm font-medium text-gray-500">Example Problem:</span>
+                <div className="mt-2 p-4 bg-gray-50 rounded-lg border-l-4 border-blue-500">
+                  <p className="text-gray-700">"I'm learning Python and struggling with understanding decorators. Can you help me understand what they are and provide practical examples?"</p>
+                </div>
+              </div>
+              <div>
+                <span className="text-sm font-medium text-gray-500">AI Coach Response:</span>
+                <div className="mt-2 p-4 bg-blue-50 rounded-lg border-l-4 border-green-500">
+                  <div className="space-y-2">
+                    <p className="text-gray-700 font-medium">🎯 Step-by-Step Learning Plan:</p>
+                    <ul className="text-gray-700 space-y-1 ml-4">
+                      <li>• <strong>Concept</strong>: Decorators are functions that modify other functions</li>
+                      <li>• <strong>Practice</strong>: Start with @property and @staticmethod</li>
+                      <li>• <strong>Build</strong>: Create a timing decorator for performance monitoring</li>
+                      <li>• <strong>Resources</strong>: Python.org docs + Real Python tutorial</li>
+                    </ul>
+                    <div className="mt-3 flex gap-2">
+                      <Badge variant="secondary">Python</Badge>
+                      <Badge variant="secondary">Decorators</Badge>
+                      <Badge variant="secondary">Functions</Badge>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer */}
+      <footer className="container mx-auto px-4 py-8 mt-20 border-t border-gray-200">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="flex items-center space-x-2 mb-4 md:mb-0">
+            <div className="w-6 h-6 bg-blue-600 rounded flex items-center justify-center">
+              <span className="text-white font-bold text-sm">Q</span>
+            </div>
+            <span className="text-gray-600">© 2025 QuickCoach. All rights reserved.</span>
+          </div>
+          <div className="flex space-x-6 text-sm text-gray-600">
+            <a href="#" className="hover:text-blue-600 transition-colors">Privacy</a>
+            <a href="#" className="hover:text-blue-600 transition-colors">Terms</a>
+            <a href="#" className="hover:text-blue-600 transition-colors">Contact</a>
+          </div>
+        </div>
       </footer>
     </div>
   );
