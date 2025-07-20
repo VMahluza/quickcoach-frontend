@@ -17,7 +17,9 @@ export default function Home() {
             <h1 className="text-2xl font-bold text-gray-900">QuickCoach</h1>
           </div>
           <div className="flex items-center space-x-4">
-            <Button variant="ghost">Login</Button>
+            <Button variant="ghost" asChild>
+              <a href="/auth/signin">Login</a>
+            </Button>
             <Button>Sign Up</Button>
           </div>
         </nav>
