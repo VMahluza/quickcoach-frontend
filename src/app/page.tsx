@@ -3,8 +3,21 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useEffect, useState } from "react";
+import { authenticatedUser } from "@/app/actions";
+import type { User } from "@/types/user";
+import Link from "next/link";
+
 
 export default function Home() {
+
+  const [user, setUser] = useState<User | null>(null);
+  useEffect(() => {
+    authenticatedUser()
+      .then(setUser)
+      .catch(() => setUser(null));
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Header */}
@@ -18,9 +31,20 @@ export default function Home() {
           </div>
           <div className="flex items-center space-x-4">
             <Button variant="ghost" asChild>
-              <a href="/auth/signin">Login</a>
+
+              {user ? (
+                <Link href="/overview">Hi {user.firstName} {user.lastName}!</Link>
+              ) : (
+                <Link href="/auth/signin">Login</Link>
+              )}
             </Button>
-            <Button>Sign Up</Button>
+            <Button>
+              {user ? (
+                 <Link href="/auth/signout">Logout</Link>
+              ) : (
+                <Link href="/auth/signup">Get Started</Link>
+              )}
+            </Button>
           </div>
         </nav>
       </header>

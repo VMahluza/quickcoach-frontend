@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useMutation } from "@apollo/client";
-import { gql } from "@apollo/client";
+import { loginUserAction } from "./actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,21 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-// GraphQL mutation for user login
-const LOGIN_USER = gql`
-    mutation LoginUser($username: String!, $password: String!) {
-        loginUser(username: $username, password: $password) {
-            user {
-                id
-                username
-                email
-            }
-            success
-            errors
-            token
-        }
-    }
-`;
+// ...existing code...
 
 // Form validation schema
 const signinSchema = z.object({
@@ -42,8 +27,6 @@ export default function SigninPage() {
     const [isLoading, setIsLoading] = useState(false);
     const [serverErrors, setServerErrors] = useState<string[]>([]);
 
-    const [loginUser] = useMutation(LOGIN_USER);
-
     const {
         register,
         handleSubmit,
@@ -56,26 +39,18 @@ export default function SigninPage() {
         setIsLoading(true);
         setServerErrors([]);
 
-        try {
-            const { data: result } = await loginUser({
-                variables: {
-                    username: data.username,
-                    password: data.password,
-                },
-            });
+        // Prepare form data for server action
+        const formData = new FormData();
+        formData.append("username", data.username);
+        formData.append("password", data.password);
 
-            if (result.loginUser.success) {
-                // Save token if needed, then redirect
-                router.push("/");
-            } else {
-                setServerErrors(result.loginUser.errors || ["Login failed"]);
-            }
-        } catch (error) {
-            console.error("Login error:", error);
-            setServerErrors(["An unexpected error occurred. Please try again."]);
-        } finally {
-            setIsLoading(false);
+        const result = await loginUserAction(formData);
+        if (result.success) {
+            router.push("/");
+        } else {
+            setServerErrors([result.error || "Login failed"]);
         }
+        setIsLoading(false);
     };
 
     return (
